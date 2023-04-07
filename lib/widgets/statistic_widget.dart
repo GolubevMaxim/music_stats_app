@@ -12,52 +12,13 @@ class StatisticWidget extends StatefulWidget {
 }
 
 class _StatisticWidgetState extends State<StatisticWidget> {
-  int timeSum = 0;
-  int percentSum = 0;
-
-  int yestardayTimeSum = 0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    yestardayUpdater().then((value) => getStats());
-  }
-
-  Future<void> yestardayUpdater() async {
-    List<int>? yestardayData =
-        await load((DateTime.now().subtract(const Duration(days: 1))));
-
-    if (yestardayData != null) {
-      yestardayTimeSum = yestardayData.reduce((value, elem) => value + elem);
-    }
-
-    final hours = 24 - DateTime.now().hour;
-    final minutes = 60 - DateTime.now().minute + hours * 60;
-
-    Future.delayed(Duration(minutes: minutes), () => yestardayUpdater);
-  }
-
-  void getStats() {
-    load(DateTime.now()).then((date) {
-      if (date != null) {
-        timeSum = date.reduce((value, element) => value + element);
-        percentSum = ((timeSum / yestardayTimeSum - 1) * 100).toInt();
-      }
-    });
-
-    setState(() {});
-    Future.delayed(const Duration(seconds: 1), getStats);
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: double.infinity,
         child: Row(children: [
-          TextWarp(
-              text: "Total: ${durationFormat(Duration(seconds: timeSum))}"),
-          TextWarp(text: "$percentSum%")
+          TextWarp(text: "Total: ${durationFormat(Duration(seconds: 0))}"),
+          TextWarp(text: "xxx%")
         ]));
   }
 }

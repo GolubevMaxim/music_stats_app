@@ -6,10 +6,8 @@ import '../data/tools.dart';
 
 class TimerButton extends StatelessWidget {
   final String text;
-  final ValueListenable<int> number;
-  final ValueListenable<int> percente;
 
-  const TimerButton(this.text, this.number, this.percente, {super.key});
+  const TimerButton(this.text, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +16,11 @@ class TimerButton extends StatelessWidget {
           flex: 2,
           child: Column(children: [
             TextWarp(text: text),
-            TextWarp(text: durationFormat(Duration(seconds: number.value)))
+            TextWarp(text: durationFormat(Duration(seconds: 0)))
           ])),
       Expanded(
           flex: 1,
-          child: Text("${percente.value.toString()}%",
+          child: Text("xxx%",
               style: GoogleFonts.getFont("Titan One", fontSize: 25)))
     ]);
   }
