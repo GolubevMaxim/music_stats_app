@@ -40,26 +40,26 @@ class Timers extends StatelessWidget {
           "Repertoire ",
           ButtonStyle(
               backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color.fromARGB(255, 244, 53, 53))),
+                  Color.fromARGB(255, 255, 0, 0))),
           ButtonStyle(
               backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color.fromARGB(255, 85, 26, 26)))),
+                  Color.fromARGB(255, 49, 0, 0)))),
       TimerParameters(
           "Technic ",
           ButtonStyle(
               backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color.fromARGB(255, 53, 244, 148))),
+                  Color.fromARGB(255, 0, 255, 17))),
           ButtonStyle(
               backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color.fromARGB(255, 33, 109, 33)))),
+                  Color.fromARGB(255, 0, 31, 0)))),
       TimerParameters(
           "Analysis ",
           ButtonStyle(
               backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color.fromARGB(255, 84, 210, 255))),
+                  Color.fromARGB(255, 0, 89, 255))),
           ButtonStyle(
               backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color.fromARGB(255, 44, 44, 146))))
+                  Color.fromARGB(255, 0, 0, 52))))
     ]);
   }
 }

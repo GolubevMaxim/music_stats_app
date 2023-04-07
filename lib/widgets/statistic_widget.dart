@@ -13,12 +13,18 @@ class StatisticWidget extends StatelessWidget {
     return SizedBox(
         width: double.infinity,
         child: Row(children: [
-          TextWarp(
-              text:
-                  "Total: ${durationFormat(Duration(seconds: ChangeNotifierProvider.watch<TimersModel>(context)?.getTotalTime() ?? 0))}"),
-          TextWarp(
-              text:
-                  "${ChangeNotifierProvider.watch<TimersModel>(context)?.getTotalPercent() ?? 0}%")
+          Expanded(
+            flex: 2,
+            child: TextWarp(
+                text:
+                    "Total: ${durationFormat(Duration(seconds: ChangeNotifierProvider.watch<TimersModel>(context)?.getTotalTime() ?? 0))}"),
+          ),
+          Expanded(
+            flex: 1,
+            child: TextWarp(
+                text:
+                    "${ChangeNotifierProvider.watch<TimersModel>(context)?.getTotalPercent() ?? 0}%"),
+          )
         ]));
   }
 }
@@ -33,12 +39,11 @@ class TextWarp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: SizedBox(
-            width: double.infinity,
-            child: Align(
-                alignment: Alignment.topCenter,
-                child: Text(text,
-                    style: GoogleFonts.getFont("Titan One", fontSize: 25)))));
+    return SizedBox(
+        width: double.infinity,
+        child: Align(
+            alignment: Alignment.topLeft,
+            child: Text(text,
+                style: GoogleFonts.getFont("Titan One", fontSize: 25))));
   }
 }

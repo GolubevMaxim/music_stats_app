@@ -10,7 +10,10 @@ class App extends StatelessWidget {
     return MaterialApp(
         theme: ThemeData(fontFamily: GoogleFonts.titanOne().fontFamily),
         home: Scaffold(
-          appBar: AppBar(title: const Text("Main screen")),
+          appBar: AppBar(
+            title: const Text("Main screen"),
+            titleTextStyle: GoogleFonts.titanOne(fontSize: 25),
+          ),
           body: const MainScreen(),
         ));
   }
