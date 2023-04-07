@@ -7,10 +7,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(fontFamily: "ARCO"),
         home: Scaffold(
-          appBar: AppBar(title: const Text("Main screen")),
-          body: const MainScreen(),
-        ));
+      appBar: AppBar(title: const Text("Main screen")),
+      body: const MainScreen(),
+    ));
   }
 }
