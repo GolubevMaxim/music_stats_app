@@ -1,39 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:music_stats_app/models/change_notifier_provider.dart';
+import 'package:music_stats_app/models/timers_model.dart';
 import 'package:music_stats_app/widgets/timer_button.dart';
 
-class TimersWidget extends StatefulWidget {
-  const TimersWidget({Key? key}) : super(key: key);
+class TimerParameters {
+  final String text;
+  final ButtonStyle activeColor;
+  final ButtonStyle inactiveColor;
 
-  @override
-  State<TimersWidget> createState() => _TimersWidgetState();
+  const TimerParameters(
+    this.text,
+    this.activeColor,
+    this.inactiveColor,
+  );
 }
 
-class _TimersWidgetState extends State<TimersWidget> {
-  final List<bool> _timerState = [false, false, false];
+class TimersWidget extends StatelessWidget {
+  final List<TimerParameters> timerParameters;
 
-  final List<String> _timerText = ["Repertorie ", "Technic ", "Analysis "];
-
-  final List<ButtonStyle> _buttonStyle = [
-    ElevatedButton.styleFrom(backgroundColor: Colors.red),
-    ElevatedButton.styleFrom(backgroundColor: Colors.green),
-    ElevatedButton.styleFrom(backgroundColor: Colors.blue)
-  ];
+  const TimersWidget({Key? key, required this.timerParameters})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<TimerButton> timerButtons = [];
     List<Widget> timerButtonContainers = [const SizedBox(height: 5)];
 
-    for (int i = 0; i < _timerText.length; i++) {
-      timerButtons.add(TimerButton(_timerText[i]));
+    for (int i = 0; i < timerParameters.length; i++) {
+      timerButtons.add(TimerButton(
+          i,
+          ChangeNotifierProvider.read<TimersModel>(context)
+              ?.changeStateBuilder(i),
+          timerParameters[i]));
     }
 
     for (int i = 0; i < timerButtons.length; i++) {
-      timerButtonContainers.add(_TimerButtonContainer(
-          child: ElevatedButton(
-              style: _buttonStyle[i],
-              onPressed: () {},
-              child: timerButtons[i])));
+      timerButtonContainers.add(_TimerButtonContainer(child: timerButtons[i]));
     }
 
     return SizedBox(

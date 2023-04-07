@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:music_stats_app/data/data.dart';
 
 import '../data/tools.dart';
+import '../models/change_notifier_provider.dart';
+import '../models/timers_model.dart';
 
-class StatisticWidget extends StatefulWidget {
+class StatisticWidget extends StatelessWidget {
   const StatisticWidget({Key? key}) : super(key: key);
 
-  @override
-  State<StatisticWidget> createState() => _StatisticWidgetState();
-}
-
-class _StatisticWidgetState extends State<StatisticWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: double.infinity,
         child: Row(children: [
-          TextWarp(text: "Total: ${durationFormat(Duration(seconds: 0))}"),
-          TextWarp(text: "xxx%")
+          TextWarp(
+              text:
+                  "Total: ${durationFormat(Duration(seconds: ChangeNotifierProvider.watch<TimersModel>(context)?.getTotalTime() ?? 0))}"),
+          TextWarp(
+              text:
+                  "${ChangeNotifierProvider.watch<TimersModel>(context)?.getTotalPercent() ?? 0}%")
         ]));
   }
 }
